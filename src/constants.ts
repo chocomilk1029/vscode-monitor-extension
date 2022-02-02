@@ -1,0 +1,1 @@
+export const LOG_FILE_NAME = 'temp_log.json';
