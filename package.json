@@ -10,14 +10,14 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:vscode-monitor-extension.helloWorld"
+		"onCommand:vscode-monitor-extension.studentID"
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "vscode-monitor-extension.helloWorld",
-				"title": "Hello World"
+				"command": "vscode-monitor-extension.studentID",
+				"title": "Input Student ID and activate"
 			}
 		]
 	},
