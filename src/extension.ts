@@ -1,18 +1,17 @@
 import * as vscode from 'vscode';
-
-import { COMMAND_STUDENT_ID } from './constants';
+import { WebviewPanel } from './webviewPanel';
+import { COMMAND_STUDENT_ID, COMMAND_REFRESH} from './constants';
 import { Monitor } from './monitor';
 
 var monitor: Monitor;
 
 export function activate(context: vscode.ExtensionContext) {
 	
-	monitor = new Monitor();
+	monitor = new Monitor(context.extensionUri);
+	monitor.initialize();
 
 	context.subscriptions.push(
-		vscode.commands.registerCommand(COMMAND_STUDENT_ID, function () {
-			monitor.initialize();
-		})
+		vscode.window.registerWebviewViewProvider(WebviewPanel.viewType, monitor.panel)
 	);
 
 	context.subscriptions.push(monitor);
@@ -21,5 +20,6 @@ export function activate(context: vscode.ExtensionContext) {
 
 // this method is called when your extension is deactivated
 export function deactivate() {
+	monitor.uploadContent();
 	monitor.dispose();
 }
